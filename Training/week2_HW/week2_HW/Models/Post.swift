@@ -8,12 +8,30 @@
 import Foundation
 
 struct Post: Decodable {
-    
-    let photos: String
-    let id: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case photos
-        case id
-    }
+    let photos: [Photos]
 }
+
+struct Photos: Decodable {
+    let id: Int
+    let sol: Int
+    let camera: Camera
+    let img_src: String
+    let earth_date: String
+    let rover: Rover
+}
+
+struct Rover: Decodable{
+    let id: Int
+    let name: String
+    let landing_date: String
+    let launch_date: String
+    let status: String
+}
+
+struct Camera: Decodable{
+    let id: Int
+    let name: String
+    let rover_id: Int
+    let full_name: String
+}
+

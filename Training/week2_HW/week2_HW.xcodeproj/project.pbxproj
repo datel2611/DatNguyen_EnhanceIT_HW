@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		02113B4227F2CCEB00416146 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02113B4127F2CCEB00416146 /* Post.swift */; };
+		021187A927F3CD6D00FCFD17 /* ViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021187A827F3CD6D00FCFD17 /* ViewProtocols.swift */; };
+		021187AF27F3F3D800FCFD17 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021187AE27F3F3D800FCFD17 /* PostCell.swift */; };
+		021187B127F4095C00FCFD17 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021187B027F4095C00FCFD17 /* PostItem.swift */; };
+		021187B327F4F56B00FCFD17 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021187B227F4F56B00FCFD17 /* DetailViewController.swift */; };
 		021F71A327F2A7C70043021B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021F71A227F2A7C70043021B /* AppDelegate.swift */; };
 		021F71A527F2A7C70043021B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021F71A427F2A7C70043021B /* SceneDelegate.swift */; };
 		021F71A727F2A7C70043021B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021F71A627F2A7C70043021B /* ViewController.swift */; };
@@ -20,6 +24,10 @@
 
 /* Begin PBXFileReference section */
 		02113B4127F2CCEB00416146 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		021187A827F3CD6D00FCFD17 /* ViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocols.swift; sourceTree = "<group>"; };
+		021187AE27F3F3D800FCFD17 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		021187B027F4095C00FCFD17 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
+		021187B227F4F56B00FCFD17 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		021F719F27F2A7C70043021B /* week2_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = week2_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		021F71A227F2A7C70043021B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		021F71A427F2A7C70043021B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,11 +74,11 @@
 				021F71A427F2A7C70043021B /* SceneDelegate.swift */,
 				021F71B927F2B3E40043021B /* Network */,
 				021F71B727F2B2710043021B /* Models */,
-				021F71B827F2B2780043021B /* Controllers */,
 				021F71B627F2B2630043021B /* Views */,
 				021F71AB27F2A7C90043021B /* Assets.xcassets */,
 				021F71AD27F2A7C90043021B /* LaunchScreen.storyboard */,
 				021F71B027F2A7C90043021B /* Info.plist */,
+				021F71A827F2A7C70043021B /* Main.storyboard */,
 			);
 			path = week2_HW;
 			sourceTree = "<group>";
@@ -78,7 +86,10 @@
 		021F71B627F2B2630043021B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				021F71A827F2A7C70043021B /* Main.storyboard */,
+				021F71A627F2A7C70043021B /* ViewController.swift */,
+				021187A827F3CD6D00FCFD17 /* ViewProtocols.swift */,
+				021187AE27F3F3D800FCFD17 /* PostCell.swift */,
+				021187B227F4F56B00FCFD17 /* DetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -87,16 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				02113B4127F2CCEB00416146 /* Post.swift */,
+				021187B027F4095C00FCFD17 /* PostItem.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		021F71B827F2B2780043021B /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				021F71A627F2A7C70043021B /* ViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		021F71B927F2B3E40043021B /* Network */ = {
@@ -180,10 +184,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				021F71BB27F2B4590043021B /* NetworkManager.swift in Sources */,
+				021187B327F4F56B00FCFD17 /* DetailViewController.swift in Sources */,
 				021F71A727F2A7C70043021B /* ViewController.swift in Sources */,
 				021F71A327F2A7C70043021B /* AppDelegate.swift in Sources */,
+				021187B127F4095C00FCFD17 /* PostItem.swift in Sources */,
 				027DF3E827F333C000121F81 /* NetworkError.swift in Sources */,
 				021F71A527F2A7C70043021B /* SceneDelegate.swift in Sources */,
+				021187AF27F3F3D800FCFD17 /* PostCell.swift in Sources */,
+				021187A927F3CD6D00FCFD17 /* ViewProtocols.swift in Sources */,
 				02113B4227F2CCEB00416146 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
