@@ -7,6 +7,8 @@
 
 import UIKit
 
+class ViewController: UIViewController {
+
     private let networkManager = NetworkManager()
     private var posts = [PostItem]()
     private var rowSelected = 0
