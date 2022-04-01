@@ -7,14 +7,6 @@
 
 import UIKit
 
-class ViewController: UIViewController /*,DetailViewControllerDelegate*/ {
-//    func setStatus(_ status: Bool) {
-//        <#code#>
-//    }
-    
-
-  
-    //private var presenter: ViewControllerPresenterProtocol?
     private let networkManager = NetworkManager()
     private var posts = [PostItem]()
     private var rowSelected = 0
@@ -95,20 +87,9 @@ extension ViewController: UITableViewDataSource{
         let row = indexPath.row
         
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.identifier, for: indexPath) as! PostCell
-        
-        
+            
         cell.configureCell(id: networkManager.postItems[row].id, status: networkManager.postItems[row].status)
-        
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .byWordWrapping
-        
-        
-        cell.detailTextLabel?.text = "Status: \(String(networkManager.postItems[row].status))"
 
-
-        
-        //cell.textLabel?.text = "ID: \(networkManager.postItems[row].id)  status: \(networkManager.postItems[row].status)"
-        //print(networkManager.postItems[row].id)
 
         return cell
     }
