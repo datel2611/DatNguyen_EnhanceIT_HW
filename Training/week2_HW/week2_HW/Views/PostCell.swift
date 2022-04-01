@@ -53,10 +53,8 @@ class PostCell: UITableViewCell {
         idLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
 
         
-        statusLabel.topAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
-        statusLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
-        statusLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
-        statusLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
+        statusLabel.topAnchor.constraint(equalTo: idLabel.bottomAnchor).isActive = true
+        
 
     }
     func configureCell(id: Int, status: Bool){
