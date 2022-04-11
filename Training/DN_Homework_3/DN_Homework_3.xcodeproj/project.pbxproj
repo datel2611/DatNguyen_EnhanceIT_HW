@@ -13,8 +13,6 @@
 		023D545827FE663600834E8E /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D545727FE663600834E8E /* MovieListViewModel.swift */; };
 		023D545B28020F9800834E8E /* NetworkURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D545A28020F9800834E8E /* NetworkURLs.swift */; };
 		023D545D2802589A00834E8E /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D545C2802589A00834E8E /* MovieDetailViewController.swift */; };
-		025B28122803C0530095A82D /* HW3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 025B28102803C0530095A82D /* HW3.xcdatamodeld */; };
-		025B28142803C07B0095A82D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B28132803C07B0095A82D /* AppDelegate.swift */; };
 		025B28162803C0820095A82D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B28152803C0820095A82D /* AppDelegate.swift */; };
 		0271474C27FC9503005DEF79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0271474B27FC9503005DEF79 /* SceneDelegate.swift */; };
 		0271474E27FC9503005DEF79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0271474D27FC9503005DEF79 /* ViewController.swift */; };
@@ -33,8 +31,6 @@
 		023D545727FE663600834E8E /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		023D545A28020F9800834E8E /* NetworkURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkURLs.swift; sourceTree = "<group>"; };
 		023D545C2802589A00834E8E /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
-		025B28112803C0530095A82D /* HW3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HW3.xcdatamodel; sourceTree = "<group>"; };
-		025B28132803C07B0095A82D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../../HW3/HW3/AppDelegate.swift; sourceTree = "<group>"; };
 		025B28152803C0820095A82D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0271474627FC9503005DEF79 /* DN_Homework_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DN_Homework_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0271474B27FC9503005DEF79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +94,6 @@
 				0271475227FC9504005DEF79 /* Assets.xcassets */,
 				0271475427FC9504005DEF79 /* LaunchScreen.storyboard */,
 				0271475727FC9504005DEF79 /* Info.plist */,
-				025B28102803C0530095A82D /* HW3.xcdatamodeld */,
 			);
 			path = DN_Homework_3;
 			sourceTree = "<group>";
@@ -106,7 +101,6 @@
 		0271475D27FC98D1005DEF79 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				025B28132803C07B0095A82D /* AppDelegate.swift */,
 				0271475E27FC98ED005DEF79 /* APIResponse.swift */,
 				0271476027FC99DD005DEF79 /* MovieResponse.swift */,
 			);
@@ -212,10 +206,8 @@
 				0271474E27FC9503005DEF79 /* ViewController.swift in Sources */,
 				0271475F27FC98ED005DEF79 /* APIResponse.swift in Sources */,
 				0271476727FCBBA8005DEF79 /* MovieListViewController.swift in Sources */,
-				025B28142803C07B0095A82D /* AppDelegate.swift in Sources */,
 				0271474C27FC9503005DEF79 /* SceneDelegate.swift in Sources */,
 				023D545827FE663600834E8E /* MovieListViewModel.swift in Sources */,
-				025B28122803C0530095A82D /* HW3.xcdatamodeld in Sources */,
 				023D545B28020F9800834E8E /* NetworkURLs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,20 +424,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		025B28102803C0530095A82D /* HW3.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				025B28112803C0530095A82D /* HW3.xcdatamodel */,
-			);
-			currentVersion = 025B28112803C0530095A82D /* HW3.xcdatamodel */;
-			name = HW3.xcdatamodeld;
-			path = ../../HW3/HW3/HW3.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 0271473E27FC9503005DEF79 /* Project object */;
 }
