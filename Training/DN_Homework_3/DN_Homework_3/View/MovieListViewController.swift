@@ -12,9 +12,19 @@ class MovieListVC: UIViewController{
     
     private var viewModel : MovieListViewModelProtocol?
     private var subcribers = Set<AnyCancellable>()
-    
     var userName: String?
     private var movies = [Movie]()
+    
+    private lazy var refreshAction: UIAction = UIAction { [weak self] _ in
+        self?.refresh()
+    }
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl(frame: .zero, primaryAction: refreshAction)
+        
+        return refresh
+    }()
+    
     
         
     
@@ -68,7 +78,8 @@ class MovieListVC: UIViewController{
         movieListView.backgroundColor = .lightGray
         movieListView.dataSource = self
         movieListView.delegate = self
-        //movieListView.prefetchDataSource = self
+        movieListView.prefetchDataSource = self
+        movieListView.addSubview(refreshControl)
         
         return movieListView
     }()
@@ -102,8 +113,9 @@ class MovieListVC: UIViewController{
         assemblingMVVM()
         setUpUI()
         setUpBinding()
-        
-        
+    }
+    private func refresh(){
+        viewModel?.forceUpdate()
     }
     
     private func assemblingMVVM(){
@@ -113,14 +125,26 @@ class MovieListVC: UIViewController{
     private func setUpBinding() {
         viewModel?
             .publisherMovies
-            .sink(receiveValue: { _ in
+            .sink(receiveValue: { [weak self] _ in
                 DispatchQueue.main.async {
-                    self.movieListView.reloadData()
+                    self?.movieListView.reloadData()
+                    self?.refreshControl.endRefreshing()
+                }
+            })
+            .store(in: &subcribers)
+        
+        viewModel?
+            .publisherCache
+            .sink(receiveValue: { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.movieListView.reloadData()
                 }
             })
             .store(in: &subcribers)
         
         viewModel?.getMovies()
+        
+        
     }
 
     private func setUpUI(){
@@ -160,7 +184,7 @@ class MovieListVC: UIViewController{
 
 
 }
-extension MovieListVC: UITableViewDataSource, UITableViewDelegate {
+extension MovieListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print("movies count: \(viewModel?.totalRows)")
         return viewModel?.totalRows ?? 0
@@ -179,18 +203,18 @@ extension MovieListVC: UITableViewDataSource, UITableViewDelegate {
         
         let title = viewModel?.getTitle(by: row)
         let overView = viewModel?.getOverview(by: row)
-        
-        //print(title)
-        
-        cell.configureMovieCell( title: title, overview: overView)
+        let data = viewModel?.getImageData(by: row)
+        //print(data)
         
         
+        cell.configureMovieCell( title: title, overview: overView, imageData: data)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+            return 150
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
@@ -204,5 +228,21 @@ extension MovieListVC: UITableViewDataSource, UITableViewDelegate {
         
         navigationController?.pushViewController(destination, animated: true)
     }
+}
+
+extension MovieListVC: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
+        let indexes = indexPaths.map {$0.row}
+        let total = viewModel?.totalRows ?? 0
+
+        if indexes.contains(total - 1){
+            viewModel?.loadMoreMovies()
+        }
+    }
+}
+
+extension MovieListVC: UITableViewDelegate {
+        
 }
 

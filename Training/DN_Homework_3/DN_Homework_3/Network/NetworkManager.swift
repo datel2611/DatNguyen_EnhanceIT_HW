@@ -12,6 +12,7 @@ import UIKit
 protocol NetworkManager {
     func getMovies(from url: String) -> AnyPublisher<APIResponse, NetworkError>
     //func testGetMovie(completionHandler: @escaping (Result<[Movie],NetworkError>) -> Void)
+    func getData(from url: String, completionHandler: @escaping (Data?) -> Void)
 
 }
 
@@ -41,6 +42,23 @@ class MainNetworkManager: NetworkManager {
             .eraseToAnyPublisher()
         
     }
+    
+    func getData(from url: String, completionHandler: @escaping (Data?) -> Void){
+        
+        guard let url = URL(string: url)
+        else{
+            completionHandler(nil)
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, _, _  in
+            completionHandler(data)
+        }
+        .resume()
+    }
+    
+
+
 }
     
 //    func testGetMovie(completionHandler: @escaping (Result<[Movie],NetworkError>) -> Void) {

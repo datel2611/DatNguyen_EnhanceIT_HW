@@ -13,6 +13,7 @@ class MovieCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setUpUI()
     }
     required init?(coder: NSCoder){
         fatalError("init(coder): not implemented")
@@ -31,7 +32,9 @@ class MovieCell: UITableViewCell {
         let movieTittle = UILabel()
         movieTittle.translatesAutoresizingMaskIntoConstraints = false
         movieTittle.text = "Movie tittle"
-        movieTittle.backgroundColor = .blue
+        movieTittle.font = UIFont.boldSystemFont(ofSize: 20)
+        movieTittle.numberOfLines = 2
+        //movieTittle.backgroundColor = .blue
         
         return movieTittle
     }()
@@ -40,7 +43,9 @@ class MovieCell: UITableViewCell {
         let movieOverview = UILabel()
         movieOverview.translatesAutoresizingMaskIntoConstraints = false
         movieOverview.text = "Movie overview"
-        movieOverview.backgroundColor = .orange
+        movieOverview.numberOfLines = 5
+        
+        //movieOverview.backgroundColor = .orange
         
         return movieOverview
     }()
@@ -66,34 +71,42 @@ class MovieCell: UITableViewCell {
         
         let safeArea = contentView.safeAreaLayoutGuide
         
-        movieImage.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-        movieImage.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
+        movieImage.topAnchor.constraint(equalTo: safeArea.topAnchor,constant: 10).isActive = true
+        movieImage.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -10).isActive = true
         movieImage.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10).isActive = true
-        movieImage.trailingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 50).isActive = true
+        movieImage.trailingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 100).isActive = true
+        movieImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-        movieTittle.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+        movieTittle.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10).isActive = true
         movieTittle.bottomAnchor.constraint(equalTo: safeArea.topAnchor, constant: 30).isActive = true
-        movieTittle.leadingAnchor.constraint(equalTo: movieImage.trailingAnchor).isActive = true
+        movieTittle.leadingAnchor.constraint(equalTo: movieImage.trailingAnchor, constant: 5).isActive = true
         movieTittle.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
         
         movieOverview.topAnchor.constraint(equalTo: movieTittle.bottomAnchor).isActive = true
-        movieOverview.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
-        movieOverview.leadingAnchor.constraint(equalTo: movieImage.trailingAnchor).isActive = true
+        movieOverview.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -10).isActive = true
+        movieOverview.leadingAnchor.constraint(equalTo: movieImage.trailingAnchor, constant: 5).isActive = true
         movieOverview.trailingAnchor.constraint(equalTo: showDetailButton.leadingAnchor).isActive = true
         
-        showDetailButton.topAnchor.constraint(equalTo: movieTittle.bottomAnchor).isActive = true
-        showDetailButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -5).isActive = true
+        showDetailButton.topAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -40).isActive = true
+        showDetailButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -10).isActive = true
         showDetailButton.leadingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -120).isActive = true
         showDetailButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -5).isActive = true
         
         
     }
-    func configureMovieCell(title: String?, overview: String?){
+    func configureMovieCell(title: String?, overview: String?, imageData: Data?){
         
         //print(title)
+        
+        
         movieTittle.text = title
         movieOverview.text = overview
-
+        
+        movieImage.image = nil
+        if let imageData = imageData {
+            movieImage.image = UIImage(data: imageData)
+        }
+        contentView.sizeToFit()
     }
 
 }
