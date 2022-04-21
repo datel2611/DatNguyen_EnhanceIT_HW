@@ -38,6 +38,7 @@ class LocalRepository: LocalRepositoryProtocol{
         cdFavourite.title = movies[row].title
         cdFavourite.overview = movies[row].overview
         cdFavourite.id = Int64(movies[row].id!)
+        
         //print("save id: \(cdFavourite.id)")
         do {
             try context.save()

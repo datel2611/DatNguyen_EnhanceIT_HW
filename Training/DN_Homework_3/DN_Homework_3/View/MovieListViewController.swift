@@ -18,9 +18,6 @@ class MovieListVC: UIViewController, MovieListVCProtocol {
     internal var viewModel : MovieListViewModelProtocol?
     private var subcribers = Set<AnyCancellable>()
     var userName: String?
-    //private var movies = [Movie]()
-    private var favouriteMovies = [Movie]()
-    
     
     
     private lazy var refreshAction: UIAction = UIAction { [weak self] _ in
@@ -116,15 +113,6 @@ class MovieListVC: UIViewController, MovieListVCProtocol {
         setUpBinding()
         
     }
-    private func loadFavourites() {
-        
-        MovieListViewControllerConfigurator.assemblingMVVM(view: self)
-        setUpUI()
-        favouriteMovies = (viewModel?.getFavourite())!
-        DispatchQueue.main.async {
-            self.movieListView.reloadData()
-        }
-    }
     private func refresh(){
         viewModel?.forceUpdate()
     }
@@ -188,7 +176,7 @@ class MovieListVC: UIViewController, MovieListVCProtocol {
 
 
 }
-extension MovieListVC: UITableViewDataSource {
+extension MovieListVC: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print("movies count: \(viewModel?.totalRows)")
         return viewModel?.totalRows ?? 0
@@ -255,4 +243,5 @@ extension MovieListVC: UITableViewDataSourcePrefetching {
         }
     }
 }
+
 

@@ -49,7 +49,6 @@ class MainNetworkManager: NetworkManager {
             completionHandler(nil)
             return
         }
-
         URLSession.shared.dataTask(with: url) { data, _, _  in
             completionHandler(data)
         }
