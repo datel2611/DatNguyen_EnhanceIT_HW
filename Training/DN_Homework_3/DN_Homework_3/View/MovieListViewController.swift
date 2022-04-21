@@ -7,27 +7,47 @@
 
 import UIKit
 import Combine
+import CoreData
 
-class MovieListVC: UIViewController{
+protocol MovieListVCProtocol: AnyObject {
+    var viewModel : MovieListViewModelProtocol? {get set}
+}
+
+class MovieListVC: UIViewController, MovieListVCProtocol {
     
-    private var viewModel : MovieListViewModelProtocol?
+    internal var viewModel : MovieListViewModelProtocol?
     private var subcribers = Set<AnyCancellable>()
     var userName: String?
-    private var movies = [Movie]()
+    //private var movies = [Movie]()
+    private var favouriteMovies = [Movie]()
+    
+    
+    
+//    private func saveFavourite(favouriteMovie: Movie) {
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
+//        else {return}
+//
+//        let persistentContainer = appDelegate.persistentContainer
+//        let memory = persistentContainer.viewContext
+//
+//        guard let entity = NSEntityDescription.entity(forEntityName: "Favourite", in: memory)
+//        else {return}
+//
+//        let favourite = Favourite(entity: entity, insertInto: memory)
+//        favourite.favouriteMovie = favouriteMovie
+//        appDelegate.saveContext()
+//    }
+    
+    
     
     private lazy var refreshAction: UIAction = UIAction { [weak self] _ in
         self?.refresh()
     }
-    
     private lazy var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl(frame: .zero, primaryAction: refreshAction)
         
         return refresh
     }()
-    
-    
-        
-    
     private let nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -39,14 +59,14 @@ class MovieListVC: UIViewController{
         return nameLabel
     } ()
     
-    private lazy var segmentControl: UISegmentedControl = {
+    lazy var segmentControl: UISegmentedControl = {
         let segmentControl = UISegmentedControl(items: ["Movies List","Favorites"])
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.selectedSegmentIndex = 0
         segmentControl.layer.cornerRadius = 9
         segmentControl.layer.masksToBounds = true
         
-        segmentControl.addTarget(self, action: #selector(segmentAction), for: .touchUpInside)
+        segmentControl.addTarget(self, action: #selector(segmentAction(_:)), for: .valueChanged)
         return segmentControl
     }()
     
@@ -60,14 +80,21 @@ class MovieListVC: UIViewController{
     }()
 
     
-    @objc private func segmentAction(sender: UISegmentedControl){
+    @objc private func segmentAction(_ sender: UISegmentedControl){
         switch sender.selectedSegmentIndex{
         case 0:
             view.backgroundColor = .red
+            //viewDidLoad()
+            //print("Movie list")
         case 1:
             view.backgroundColor = .green
+            //print("favourite list")
+            loadFavourites()
+            print(favouriteMovies)
+
         default:
-            view.backgroundColor = .white
+            break
+            //print("default")
         }
     }
     
@@ -106,21 +133,28 @@ class MovieListVC: UIViewController{
         navigationController?.pushViewController(destination, animated: true)
         //present(destination, animated: true, completion: nil)
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        assemblingMVVM()
+        MovieListViewControllerConfigurator.assemblingMVVM(view: self)
         setUpUI()
         setUpBinding()
+        
     }
     private func refresh(){
         viewModel?.forceUpdate()
     }
     
-    private func assemblingMVVM(){
-        let mainNetworkManager = MainNetworkManager()
-        viewModel = MovieListViewModel(networkManager: mainNetworkManager)
+//    private func assemblingMVVM(){
+//        let mainNetworkManager = MainNetworkManager()
+//        viewModel = MovieListViewModel(networkManager: mainNetworkManager)
+//    }
+    
+    private func loadFavourites() {
+        viewModel?.getFavourite()
+        DispatchQueue.main.async {
+            self.movieListView.reloadData()
+        }
     }
     private func setUpBinding() {
         viewModel?
@@ -141,10 +175,7 @@ class MovieListVC: UIViewController{
                 }
             })
             .store(in: &subcribers)
-        
         viewModel?.getMovies()
-        
-        
     }
 
     private func setUpUI(){
@@ -215,15 +246,25 @@ extension MovieListVC: UITableViewDataSource {
             return 150
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let row = indexPath.row
+        let movieId = viewModel?.getMovieId(by: row)
+        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark
+        {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+            viewModel?.removeFavourite(by: movieId!)
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+            viewModel?.saveFavourite(by: row)
+        }
     }
     
     
     @objc private func showDetail(sender: UIButton) {
         let destination = MovieDetailViewController()
-        //let selectedRow = IndexPath(row: sender.tag, section: 0)
-        
+        let selectedRow = IndexPath(row: sender.tag, section: 0)
+        print(selectedRow)
         destination.status = false
         
         navigationController?.pushViewController(destination, animated: true)

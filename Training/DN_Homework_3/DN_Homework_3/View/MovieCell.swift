@@ -38,7 +38,6 @@ class MovieCell: UITableViewCell {
         
         return movieTittle
     }()
-    
     private let movieOverview: UILabel = {
         let movieOverview = UILabel()
         movieOverview.translatesAutoresizingMaskIntoConstraints = false
@@ -49,8 +48,6 @@ class MovieCell: UITableViewCell {
         
         return movieOverview
     }()
-    
-    
     lazy var showDetailButton: UIButton = {
         let showDetailButton = UIButton()
         showDetailButton.translatesAutoresizingMaskIntoConstraints = false
@@ -58,6 +55,12 @@ class MovieCell: UITableViewCell {
         showDetailButton.setTitleColor(.white, for: .normal)
         showDetailButton.backgroundColor = .systemBlue
         return showDetailButton
+    }()
+    private let favouriteLabel: UILabel = {
+        let favouriteLabel = UILabel()
+        
+        return favouriteLabel
+        
     }()
     
    
@@ -75,7 +78,6 @@ class MovieCell: UITableViewCell {
         movieImage.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -10).isActive = true
         movieImage.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10).isActive = true
         movieImage.trailingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 100).isActive = true
-        movieImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
         movieTittle.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10).isActive = true
         movieTittle.bottomAnchor.constraint(equalTo: safeArea.topAnchor, constant: 30).isActive = true
@@ -97,8 +99,6 @@ class MovieCell: UITableViewCell {
     func configureMovieCell(title: String?, overview: String?, imageData: Data?){
         
         //print(title)
-        
-        
         movieTittle.text = title
         movieOverview.text = overview
         
@@ -106,7 +106,7 @@ class MovieCell: UITableViewCell {
         if let imageData = imageData {
             movieImage.image = UIImage(data: imageData)
         }
-        contentView.sizeToFit()
+        //contentView.sizeToFit()
     }
 
 }

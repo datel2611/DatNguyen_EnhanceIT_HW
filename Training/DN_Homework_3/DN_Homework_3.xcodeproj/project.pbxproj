@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0211807E280CFEA000561848 /* Favourite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0211807C280CFEA000561848 /* Favourite.xcdatamodeld */; };
+		02118082280D009500561848 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02118081280D009500561848 /* LocalRepository.swift */; };
+		02118084280D00E700561848 /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02118083280D00E700561848 /* RepositoryProtocol.swift */; };
+		02118086280DA22500561848 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02118085280DA22500561848 /* Repository.swift */; };
+		02118088280DA60300561848 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02118087280DA60300561848 /* CoreDataManager.swift */; };
+		0211808A280DB16800561848 /* CDFavourite+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02118089280DB16800561848 /* CDFavourite+Utils.swift */; };
+		0211808C280DBFEC00561848 /* MovieListViewControllerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211808B280DBFEC00561848 /* MovieListViewControllerConfigurator.swift */; };
+		0211808F280E5ECC00561848 /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211808E280E5ECC00561848 /* RemoteRepository.swift */; };
 		023D545127FDC27A00834E8E /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D545027FDC27A00834E8E /* MovieCell.swift */; };
 		023D545427FDC57000834E8E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D545327FDC57000834E8E /* NetworkError.swift */; };
 		023D545627FDC5EA00834E8E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D545527FDC5EA00834E8E /* NetworkManager.swift */; };
@@ -25,6 +33,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0211807D280CFEA000561848 /* MovieList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieList.xcdatamodel; sourceTree = "<group>"; };
+		02118081280D009500561848 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
+		02118083280D00E700561848 /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
+		02118085280DA22500561848 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		02118087280DA60300561848 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		02118089280DB16800561848 /* CDFavourite+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDFavourite+Utils.swift"; sourceTree = "<group>"; };
+		0211808B280DBFEC00561848 /* MovieListViewControllerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewControllerConfigurator.swift; sourceTree = "<group>"; };
+		0211808E280E5ECC00561848 /* RemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
 		023D545027FDC27A00834E8E /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		023D545327FDC57000834E8E /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		023D545527FDC5EA00834E8E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -55,6 +71,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02118078280CFDE200561848 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				0211807C280CFEA000561848 /* Favourite.xcdatamodeld */,
+				02118087280DA60300561848 /* CoreDataManager.swift */,
+				02118089280DB16800561848 /* CDFavourite+Utils.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		0211807F280D005400561848 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				02118083280D00E700561848 /* RepositoryProtocol.swift */,
+				02118085280DA22500561848 /* Repository.swift */,
+				0211808D280E5EAB00561848 /* RemoteRepository */,
+				02118080280D006500561848 /* Localrepository */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		02118080280D006500561848 /* Localrepository */ = {
+			isa = PBXGroup;
+			children = (
+				02118081280D009500561848 /* LocalRepository.swift */,
+			);
+			path = Localrepository;
+			sourceTree = "<group>";
+		};
+		0211808D280E5EAB00561848 /* RemoteRepository */ = {
+			isa = PBXGroup;
+			children = (
+				0211808E280E5ECC00561848 /* RemoteRepository.swift */,
+			);
+			path = RemoteRepository;
+			sourceTree = "<group>";
+		};
 		023D545227FDC55100834E8E /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +137,8 @@
 		0271474827FC9503005DEF79 /* DN_Homework_3 */ = {
 			isa = PBXGroup;
 			children = (
+				0211807F280D005400561848 /* Repository */,
+				02118078280CFDE200561848 /* CoreData */,
 				023D545227FDC55100834E8E /* Network */,
 				0271476327FC9D10005DEF79 /* ViewModel */,
 				0271476227FC9D09005DEF79 /* View */,
@@ -114,6 +169,7 @@
 				0271476627FCBBA8005DEF79 /* MovieListViewController.swift */,
 				023D545027FDC27A00834E8E /* MovieCell.swift */,
 				023D545C2802589A00834E8E /* MovieDetailViewController.swift */,
+				0211808B280DBFEC00561848 /* MovieListViewControllerConfigurator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,14 +255,22 @@
 			files = (
 				023D545627FDC5EA00834E8E /* NetworkManager.swift in Sources */,
 				023D545127FDC27A00834E8E /* MovieCell.swift in Sources */,
+				0211807E280CFEA000561848 /* Favourite.xcdatamodeld in Sources */,
 				023D545427FDC57000834E8E /* NetworkError.swift in Sources */,
+				02118088280DA60300561848 /* CoreDataManager.swift in Sources */,
 				0271476127FC99DD005DEF79 /* MovieResponse.swift in Sources */,
+				02118084280D00E700561848 /* RepositoryProtocol.swift in Sources */,
 				025B28162803C0820095A82D /* AppDelegate.swift in Sources */,
+				0211808A280DB16800561848 /* CDFavourite+Utils.swift in Sources */,
 				023D545D2802589A00834E8E /* MovieDetailViewController.swift in Sources */,
 				0271474E27FC9503005DEF79 /* ViewController.swift in Sources */,
 				0271475F27FC98ED005DEF79 /* APIResponse.swift in Sources */,
+				02118082280D009500561848 /* LocalRepository.swift in Sources */,
+				02118086280DA22500561848 /* Repository.swift in Sources */,
 				0271476727FCBBA8005DEF79 /* MovieListViewController.swift in Sources */,
 				0271474C27FC9503005DEF79 /* SceneDelegate.swift in Sources */,
+				0211808C280DBFEC00561848 /* MovieListViewControllerConfigurator.swift in Sources */,
+				0211808F280E5ECC00561848 /* RemoteRepository.swift in Sources */,
 				023D545827FE663600834E8E /* MovieListViewModel.swift in Sources */,
 				023D545B28020F9800834E8E /* NetworkURLs.swift in Sources */,
 			);
@@ -424,6 +488,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0211807C280CFEA000561848 /* Favourite.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0211807D280CFEA000561848 /* MovieList.xcdatamodel */,
+			);
+			currentVersion = 0211807D280CFEA000561848 /* MovieList.xcdatamodel */;
+			path = Favourite.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0271473E27FC9503005DEF79 /* Project object */;
 }

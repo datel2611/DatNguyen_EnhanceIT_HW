@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension CDFavourite {
+    func createFavourite() -> Movie{
+        return Movie(adult: nil, backdropPath: nil, id: Int(id), overview: overview, posterPath: posterPath, title: title)
+    }
+}

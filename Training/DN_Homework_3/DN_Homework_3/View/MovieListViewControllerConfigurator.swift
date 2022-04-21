@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+class MovieListViewControllerConfigurator{
+    static func assemblingMVVM(view: MovieListVCProtocol) {
+            let networkManager = MainNetworkManager()
+            let remote = RemoteRepository(networkManager: networkManager)
+            
+            let coreDataManager = CoreDataManager()
+            let local = LocalRepository(coreDataManager: coreDataManager)
+            let repository = Repository(remote: remote, local: local)
+        
+            let viewModel = MovieListViewModel(repository: repository)
+            view.viewModel = viewModel
+        }
+}

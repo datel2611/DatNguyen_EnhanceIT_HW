@@ -11,7 +11,6 @@ import UIKit
 
 protocol NetworkManager {
     func getMovies(from url: String) -> AnyPublisher<APIResponse, NetworkError>
-    //func testGetMovie(completionHandler: @escaping (Result<[Movie],NetworkError>) -> Void)
     func getData(from url: String, completionHandler: @escaping (Data?) -> Void)
 
 }
