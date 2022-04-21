@@ -25,7 +25,7 @@ class Repository: RepositoryProtocol {
         remote.getData(from: url, completionHandler: completionHandler)
     }
     
-    func getFavourite()  {
+    func getFavourite() -> [Movie]  {
         local.getFavourite()
     }
     

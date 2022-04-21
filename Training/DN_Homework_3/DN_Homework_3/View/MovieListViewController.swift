@@ -23,23 +23,6 @@ class MovieListVC: UIViewController, MovieListVCProtocol {
     
     
     
-//    private func saveFavourite(favouriteMovie: Movie) {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
-//        else {return}
-//
-//        let persistentContainer = appDelegate.persistentContainer
-//        let memory = persistentContainer.viewContext
-//
-//        guard let entity = NSEntityDescription.entity(forEntityName: "Favourite", in: memory)
-//        else {return}
-//
-//        let favourite = Favourite(entity: entity, insertInto: memory)
-//        favourite.favouriteMovie = favouriteMovie
-//        appDelegate.saveContext()
-//    }
-    
-    
-    
     private lazy var refreshAction: UIAction = UIAction { [weak self] _ in
         self?.refresh()
     }
@@ -78,26 +61,7 @@ class MovieListVC: UIViewController, MovieListVCProtocol {
         
         return searchBar
     }()
-
-    
-    @objc private func segmentAction(_ sender: UISegmentedControl){
-        switch sender.selectedSegmentIndex{
-        case 0:
-            view.backgroundColor = .red
-            //viewDidLoad()
-            //print("Movie list")
-        case 1:
-            view.backgroundColor = .green
-            //print("favourite list")
-            loadFavourites()
-            print(favouriteMovies)
-
-        default:
-            break
-            //print("default")
-        }
-    }
-    
+   
     private lazy var movieListView: UITableView = {
         let movieListView = UITableView()
         movieListView.translatesAutoresizingMaskIntoConstraints = false
@@ -133,6 +97,17 @@ class MovieListVC: UIViewController, MovieListVCProtocol {
         navigationController?.pushViewController(destination, animated: true)
         //present(destination, animated: true, completion: nil)
     }
+    
+    @objc private func segmentAction(_ sender: UISegmentedControl){
+        switch sender.selectedSegmentIndex{
+        case 0:
+            viewModel?.getMovies()
+        case 1:
+            viewModel?.getFavourite()
+        default:
+            break
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -141,21 +116,19 @@ class MovieListVC: UIViewController, MovieListVCProtocol {
         setUpBinding()
         
     }
-    private func refresh(){
-        viewModel?.forceUpdate()
-    }
-    
-//    private func assemblingMVVM(){
-//        let mainNetworkManager = MainNetworkManager()
-//        viewModel = MovieListViewModel(networkManager: mainNetworkManager)
-//    }
-    
     private func loadFavourites() {
-        viewModel?.getFavourite()
+        
+        MovieListViewControllerConfigurator.assemblingMVVM(view: self)
+        setUpUI()
+        favouriteMovies = (viewModel?.getFavourite())!
         DispatchQueue.main.async {
             self.movieListView.reloadData()
         }
     }
+    private func refresh(){
+        viewModel?.forceUpdate()
+    }
+    
     private func setUpBinding() {
         viewModel?
             .publisherMovies
@@ -281,9 +254,5 @@ extension MovieListVC: UITableViewDataSourcePrefetching {
             viewModel?.loadMoreMovies()
         }
     }
-}
-
-extension MovieListVC: UITableViewDelegate {
-        
 }
 

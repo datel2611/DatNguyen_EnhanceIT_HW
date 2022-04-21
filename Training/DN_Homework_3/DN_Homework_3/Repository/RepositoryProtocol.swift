@@ -19,7 +19,7 @@ protocol RemoteRepositoryProtocol {
 }
 
 protocol LocalRepositoryProtocol {
-    func getFavourite()
+    func getFavourite() -> [Movie] 
     func saveFavourite(_ movies: [Movie], row: Int)
     func removeFavourite(movieId: Int)
 }

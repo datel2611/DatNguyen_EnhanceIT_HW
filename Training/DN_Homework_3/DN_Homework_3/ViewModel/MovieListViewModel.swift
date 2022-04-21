@@ -22,7 +22,7 @@ protocol MovieListViewModelProtocol {
     func getImageData(by row: Int) -> Data?
     func saveFavourite(by row: Int)
     func removeFavourite(by row: Int)
-    func getFavourite()
+    func getFavourite() -> [Movie]
     
 }
 
@@ -35,9 +35,6 @@ class MovieListViewModel : MovieListViewModelProtocol {
     @Published private var cache: [Int: Data] = [:]
     var imageIndex = 0
     var movieId = [Int]()
-    
-    private var favouriteMovies = [Movie]()
-
     
     private let repository: Repository
     private var subcribers = Set<AnyCancellable>()
@@ -86,8 +83,9 @@ class MovieListViewModel : MovieListViewModelProtocol {
     func removeFavourite(by movieId: Int){
         repository.removeFavourite(movieId: movieId)
     }
-    func getFavourite() {
-        repository.getFavourite()
+    func getFavourite() -> [Movie] {
+        movies = repository.getFavourite()
+        return movies
     }
     
     private func downloadInmagesFrom(_ movies: [Movie]){

@@ -15,17 +15,17 @@ class LocalRepository: LocalRepositoryProtocol{
         self.coreDataManager = coreDataManager
     }
     
-    func getFavourite() {
+    func getFavourite() -> [Movie] {
         let request: NSFetchRequest = CDFavourite.fetchRequest()
         let context = coreDataManager.mainContext
         do {
             let movies = try context.fetch(request)
             let favouriteMovies = movies.map{$0.createFavourite()}
             //print("fav movies: \(favouriteMovies)")
-            //return favouriteMovies
+            return favouriteMovies
         } catch (let error) {
             print(error.localizedDescription)
-            //return []
+            return []
         }
     }
     
@@ -38,7 +38,7 @@ class LocalRepository: LocalRepositoryProtocol{
         cdFavourite.title = movies[row].title
         cdFavourite.overview = movies[row].overview
         cdFavourite.id = Int64(movies[row].id!)
-        print("save id: \(cdFavourite.id)")
+        //print("save id: \(cdFavourite.id)")
         do {
             try context.save()
         } catch (let error) {
@@ -57,9 +57,6 @@ class LocalRepository: LocalRepositoryProtocol{
                     //print("remove: \(movie.title)")
                 }
             }
-            
-//            print("remove: \(movies[row].title)")
-//            context.delete(movies[row])
             
         } catch (let error) {
             print(error.localizedDescription)
