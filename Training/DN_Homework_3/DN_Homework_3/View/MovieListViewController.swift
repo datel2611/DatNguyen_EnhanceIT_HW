@@ -18,6 +18,7 @@ class MovieListVC: UIViewController, MovieListVCProtocol {
     internal var viewModel : MovieListViewModelProtocol?
     private var subcribers = Set<AnyCancellable>()
     var userName: String?
+    var favourite: Bool = true
     
     
     private lazy var refreshAction: UIAction = UIAction { [weak self] _ in
