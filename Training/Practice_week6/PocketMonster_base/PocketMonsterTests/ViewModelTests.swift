@@ -18,14 +18,14 @@ class PocketMonsterTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-//    func test_loadPokemon() async throws {
-//        //given
-//        let viewModel = PokemonListViewModel(networkManager: MockNetworkManager())
-//        //when
-//        try await viewModel.loadPokemons()
-//        //then
-//        XCTAssertTrue(viewModel.pokemons[0].name == "bulbasaur")
-//    }
+    func test_loadPokemon() async throws {
+        //given
+        let viewModel = PokemonListViewModel(networkManager: MockNetworkManager())
+        //when
+        try await viewModel.loadPokemons()
+        //then
+        XCTAssertTrue(viewModel.pokemons[0].name == "bulbasaur")
+    }
     
     func test_downloadAllImages() async throws {
         //given
